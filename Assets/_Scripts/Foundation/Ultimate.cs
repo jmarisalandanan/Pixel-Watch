@@ -18,18 +18,14 @@ public class Ultimate : MonoBehaviour {
     void Awake()
     {
         Initialize();
-        ResetUltimate();
-    }
-
-    public void ResetUltimate()
-    {
-        ultimateCharge.localValue = 0;
     }
 
     public void Initialize()
     {
+        ultimateCharge.localValue = 0;
         TimersManager.SetLoopableTimer(this, 1, OnTimerTick);
         isCharging = true;
+        onUltimateUpdate.Raise();
     }
 
     public void ExternalCharge()
@@ -52,6 +48,7 @@ public class Ultimate : MonoBehaviour {
         onUltimateUpdate.Raise();
         if (ultimateCharge.localValue >= ultimateCharge.value)
         {
+            ultimateCharge.localValue = 100;
             isCharging = false;
             onUltimateReady.Raise();
         }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PulseBomb : MonoBehaviour {
 
+    [SerializeField] private GameEvent onPulseBombLaunched;
     private bool ultimateReady = false;
 
     public void SetUltimateReady()
@@ -15,7 +16,7 @@ public class PulseBomb : MonoBehaviour {
     {
         if (ultimateReady)
         {
-            Debug.Log("Ultimate!");
+            onPulseBombLaunched.Raise();
         }
     }
 
